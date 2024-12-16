@@ -1,9 +1,9 @@
-const testArr = [1,3,5,7];
+// const testArr = [1,3,5,7];
 
 
 // Cumalative Sum
 
-function sum(arr) {
+export function cumSum(arr) {
     let total = 0;
     
     for (let i = 0; i < arr.length; i++) {
@@ -16,7 +16,7 @@ function sum(arr) {
 
 
 // Binary Search:
-function search(arr, target, start=0, end=arr.length-1) {
+export function search(arr, target, start=0, end=arr.length-1) {
 
     if (start > end) {
         console.log("Not Found!");
@@ -68,7 +68,7 @@ export class LRU {
             this.cache.delete(key);
         }
 
-        else if (this.cache.size === this.capacity) {
+        else if (this.cache.size >= this.capacity) {
             this.cache.delete(this.oldestItem);
         }
 
@@ -79,9 +79,3 @@ export class LRU {
         return this.cache.keys().next().value;
     }
 }
-
-
-const cache = new LRU(5)
-
-cache.getItem('a', 1)
-cache.putItem('a')
