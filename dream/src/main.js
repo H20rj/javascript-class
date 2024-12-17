@@ -18,17 +18,27 @@ form.addEventListener('submit', async (e) => {
       }),
     });
 
-    const { image } = await response.json();
-    const result = document.querySelector('#result');
-    result.innerHTML = `<img src="${image}" width="512" />`;
+    if (response.ok) {
+      const { image } = await response.json();
+      const result = document.querySelector('#result');
+      result.innerHTML = `<img src="${image}" width="512" />`;
+    } else {
+      const err = await response.text();
+      alert(err);
+      console.error(err);
+    }
+
+    
     hideSpinner()
 });
 
 
 function showSpinner() {
   const button = document.querySelector('button');
+  const result = document.querySelector('#result');
   button.disabled = true;
   button.innerHTML = 'Dream... <span class="spinner">🧠</span>';
+  result.innerHTML = 'Image will appear here...  <span class="spinner">🥸</span>'
 }
 
 function hideSpinner() {
